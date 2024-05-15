@@ -11,9 +11,16 @@ const Header = () => {
         <img
           src={calendarIcon}
           alt="Ícone do calendário"
-          style={{ position: 'absolute', top: '50px', right: '1110px' }}
+          style={{ position: 'absolute', top: '40px', right: '1110px' }}
         />
-        <h2 style={{ color: '#333', marginRight: '390px', marginTop: '42px' }}>
+        <h2
+          style={{
+            color: '#333',
+            marginRight: '520px',
+            marginTop: '42px',
+            fontSize: '16px',
+          }}
+        >
           Período de Contrato
         </h2>
       </div>
@@ -31,7 +38,14 @@ const Header = () => {
         >
           <div style={{ display: 'flex', gap: '4px' }}>
             <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginBottom: '5px', marginRight: '-50px' }}>
+              <label
+                style={{
+                  marginBottom: '5px',
+                  marginRight: '-50px',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                }}
+              >
                 Data de Início:
               </label>
               <input
@@ -51,6 +65,8 @@ const Header = () => {
                 style={{
                   marginBottom: '5px',
                   marginRight: '10px',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
                 }}
               >
                 Horário de Início:
@@ -81,7 +97,14 @@ const Header = () => {
         >
           <div style={{ display: 'flex', gap: '4px' }}>
             <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginBottom: '5px', marginRight: '-50px' }}>
+              <label
+                style={{
+                  marginBottom: '5px',
+                  marginRight: '-50px',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                }}
+              >
                 Data de Término:
               </label>
               <input
@@ -96,7 +119,14 @@ const Header = () => {
               />
             </div>
             <div>
-              <label style={{ marginBottom: '5px', marginRight: '10px' }}>
+              <label
+                style={{
+                  marginBottom: '5px',
+                  marginRight: '10px',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                }}
+              >
                 Horário de Fim:
               </label>
               <input
@@ -116,6 +146,7 @@ const Header = () => {
       <div
         style={{
           width: '765px',
+          height: '40px',
           backgroundColor: '#F7F8F9',
           padding: '20px',
           borderRadius: '5px',
@@ -124,7 +155,12 @@ const Header = () => {
         }}
       >
         <div
-          style={{ display: 'flex', gap: '100px', justifyContent: 'center' }}
+          style={{
+            display: 'flex',
+            gap: '100px',
+            justifyContent: 'center',
+            marginTop: '-15px',
+          }}
         >
           <div style={{ marginBottom: '10px' }}>
             <div className="form-check form-switch">
@@ -136,7 +172,7 @@ const Header = () => {
               />
               <label
                 style={{
-                  fontSize: '20px',
+                  fontSize: '14px',
                   marginTop: '-2px',
                   marginLeft: '10px',
                 }}
@@ -155,7 +191,7 @@ const Header = () => {
               />
               <label
                 style={{
-                  fontSize: '20px',
+                  fontSize: '14px',
                   marginTop: '-2px',
                   marginLeft: '10px',
                 }}

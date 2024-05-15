@@ -3,6 +3,9 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import Anterior from './Assets/anterior.svg';
+import Proximo from './Assets/proximo.svg';
+
 import { Toolbar } from 'react-big-calendar';
 
 // Defina o localizador de data para português
@@ -34,29 +37,41 @@ const MyCalendar = ({ contractDetails }) => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: 'space-between',
           marginTop: '20px',
         }}
       >
         <button
+          style={{
+            border: 'none',
+            backgroundColor: 'white',
+            marginLeft: '400px',
+            marginTop: '10px',
+          }}
           onClick={() =>
             setDate((prevDate) =>
               moment(prevDate).subtract(1, 'month').toDate(),
             )
           }
         >
-          Anterior
+          <img src={Anterior} alt="Ícone do Anterior" />
         </button>
         <span style={{ margin: '0 20px', fontSize: '1.2em' }}>
           {moment(date).format('MMMM YYYY')}
         </span>
+
         <button
+          style={{
+            border: 'none',
+            backgroundColor: 'white',
+            marginRight: '400px',
+            marginTop: '10px',
+          }}
           onClick={() =>
             setDate((prevDate) => moment(prevDate).add(1, 'month').toDate())
           }
         >
-          Próximo
+          <img src={Proximo} alt="Ícone do Próximo" />
         </button>
       </div>
       <div
@@ -65,9 +80,17 @@ const MyCalendar = ({ contractDetails }) => {
           justifyContent: 'center',
           alignItems: 'center',
           height: '100vh',
+          fontWeight: 'bold',
         }}
       >
-        <div style={{ width: '600px', height: '400px', marginTop: '-340px' }}>
+        <div
+          style={{
+            width: '780px',
+            height: '400px',
+            marginTop: '-340px',
+            fontWeight: 'bold',
+          }}
+        >
           <BigCalendar
             localizer={localizer}
             events={[]}
@@ -78,7 +101,6 @@ const MyCalendar = ({ contractDetails }) => {
             date={date}
             onNavigate={setDate}
             contractDetails={contractDetails} // Passar os detalhes do contrato para o calendário
-            className="orange-calendar" // Adicione uma classe para personalizar o ícone do calendário
           />
         </div>
       </div>

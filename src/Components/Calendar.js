@@ -78,6 +78,7 @@ const MyCalendar = ({ contractDetails }) => {
             date={date}
             onNavigate={setDate}
             contractDetails={contractDetails} // Passar os detalhes do contrato para o calendário
+            className="orange-calendar" // Adicione uma classe para personalizar o ícone do calendário
           />
         </div>
       </div>

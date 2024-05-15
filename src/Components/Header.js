@@ -1,96 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import calendarIcon from './Assets/calendardays.png';
 
-const Header = ({ onChange }) => {
-  const [liberarFeriados, setLiberarFeriados] = useState(false);
-  const [liberarDomingos, setLiberarDomingos] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [endTime, setEndTime] = useState('');
-
-  const handleStartDateChange = (event) => {
-    const newStartDate = event.target.value;
-    setStartDate(newStartDate);
-    onChange({
-      startDate: newStartDate,
-      startTime,
-      endDate,
-      endTime,
-      liberarFeriados,
-      liberarDomingos,
-    });
-  };
-
-  const handleStartTimeChange = (event) => {
-    const newStartTime = event.target.value;
-    setStartTime(newStartTime);
-    onChange({
-      startDate,
-      startTime: newStartTime,
-      endDate,
-      endTime,
-      liberarFeriados,
-      liberarDomingos,
-    });
-  };
-
-  const handleEndDateChange = (event) => {
-    const newEndDate = event.target.value;
-    setEndDate(newEndDate);
-    onChange({
-      startDate,
-      startTime,
-      endDate: newEndDate,
-      endTime,
-      liberarFeriados,
-      liberarDomingos,
-    });
-  };
-
-  const handleEndTimeChange = (event) => {
-    const newEndTime = event.target.value;
-    setEndTime(newEndTime);
-    onChange({
-      startDate,
-      startTime,
-      endDate,
-      endTime: newEndTime,
-      liberarFeriados,
-      liberarDomingos,
-    });
-  };
-
-  const handleLiberarFeriadosChange = () => {
-    const newLiberarFeriados = !liberarFeriados;
-    setLiberarFeriados(newLiberarFeriados);
-    onChange({
-      startDate,
-      startTime,
-      endDate,
-      endTime,
-      liberarFeriados: newLiberarFeriados,
-      liberarDomingos,
-    });
-  };
-
-  const handleLiberarDomingosChange = () => {
-    const newLiberarDomingos = !liberarDomingos;
-    setLiberarDomingos(newLiberarDomingos);
-    onChange({
-      startDate,
-      startTime,
-      endDate,
-      endTime,
-      liberarFeriados,
-      liberarDomingos: newLiberarDomingos,
-    });
-  };
-
+const Header = () => {
   return (
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <h2 style={{ color: '#333' }}>Período de Contrato</h2>
+      <img
+        src={calendarIcon}
+        alt="Ícone do calendário"
+        style={{ marginRight: '596px' }}
+      />
+      <h2 style={{ color: '#333', marginRight: '270px' }}>
+        Período de Contrato
+      </h2>
       <div style={{ marginBottom: '20px', display: 'flex' }}>
         <div
           style={{
@@ -106,18 +29,22 @@ const Header = ({ onChange }) => {
             <label style={{ marginBottom: '5px' }}>Data de Início:</label>
             <input
               type="date"
-              style={{ padding: '5px', borderRadius: '5px' }}
-              value={startDate}
-              onChange={handleStartDateChange}
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
             />
           </div>
           <div>
             <label style={{ marginBottom: '5px' }}>Horário de Início:</label>
             <input
               type="time"
-              style={{ padding: '5px', borderRadius: '5px' }}
-              value={startTime}
-              onChange={handleStartTimeChange}
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
             />
           </div>
         </div>
@@ -134,18 +61,22 @@ const Header = ({ onChange }) => {
             <label style={{ marginBottom: '5px' }}>Data de Término:</label>
             <input
               type="date"
-              style={{ padding: '5px', borderRadius: '5px' }}
-              value={endDate}
-              onChange={handleEndDateChange}
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
             />
           </div>
           <div>
             <label style={{ marginBottom: '5px' }}>Horário de Término:</label>
             <input
               type="time"
-              style={{ padding: '5px', borderRadius: '5px' }}
-              value={endTime}
-              onChange={handleEndTimeChange}
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
             />
           </div>
         </div>
@@ -174,11 +105,7 @@ const Header = ({ onChange }) => {
               borderRadius: '20px',
             }}
           >
-            <input
-              type="checkbox"
-              checked={liberarFeriados}
-              onChange={handleLiberarFeriadosChange}
-            />
+            <input type="checkbox" />
             <span className="slider"></span>
           </div>
         </div>
@@ -201,11 +128,7 @@ const Header = ({ onChange }) => {
               borderRadius: '20px',
             }}
           >
-            <input
-              type="checkbox"
-              checked={liberarDomingos}
-              onChange={handleLiberarDomingosChange}
-            />
+            <input type="checkbox" />
             <span className="slider"></span>
           </div>
         </div>

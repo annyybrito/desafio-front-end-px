@@ -6,17 +6,20 @@ const Header = () => {
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <img
-        src={calendarIcon}
-        alt="Ícone do calendário"
-        style={{ marginRight: '596px' }}
-      />
-      <h2 style={{ color: '#333', marginRight: '270px' }}>
-        Período de Contrato
-      </h2>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={calendarIcon}
+          alt="Ícone do calendário"
+          style={{ position: 'absolute', top: '50px', right: '1140px' }}
+        />
+        <h2 style={{ color: '#333', marginRight: '500px', marginTop: '35px' }}>
+          Período de Contrato
+        </h2>
+      </div>
       <div style={{ marginBottom: '20px', display: 'flex' }}>
         <div
           style={{
+            width: '338px',
             backgroundColor: '#F7F8F9',
             padding: '20px',
             borderRadius: '5px',
@@ -25,31 +28,44 @@ const Header = () => {
             marginRight: '20px',
           }}
         >
-          <div style={{ marginBottom: '10px' }}>
-            <label style={{ marginBottom: '5px' }}>Data de Início:</label>
-            <input
-              type="date"
-              style={{
-                padding: '5px',
-                borderRadius: '5px',
-                border: '1px solid #CED2D6',
-              }}
-            />
-          </div>
-          <div>
-            <label style={{ marginBottom: '5px' }}>Horário de Início:</label>
-            <input
-              type="time"
-              style={{
-                padding: '5px',
-                borderRadius: '5px',
-                border: '1px solid #CED2D6',
-              }}
-            />
+          <div style={{ display: 'flex', gap: '20px' }}>
+            <div style={{ marginBottom: '10px' }}>
+              <label style={{ marginBottom: '5px', marginRight: '-50px' }}>
+                Data de Início:
+              </label>
+              <input
+                type="date"
+                style={{
+                  marginLeft: '-5px',
+                  padding: '5px',
+                  borderRadius: '5px',
+                  border: '1px solid #CED2D6',
+                }}
+              />
+            </div>
+            <div>
+              <label
+                style={{
+                  marginBottom: '5px',
+                  marginRight: '10px',
+                }}
+              >
+                Horário de Início:
+              </label>
+              <input
+                type="time"
+                style={{
+                  padding: '5px',
+                  borderRadius: '5px',
+                  border: '1px solid #CED2D6',
+                }}
+              />
+            </div>
           </div>
         </div>
         <div
           style={{
+            width: '370px',
             backgroundColor: '#F7F8F9',
             padding: '20px',
             borderRadius: '5px',
@@ -57,79 +73,69 @@ const Header = () => {
             flexDirection: 'column',
           }}
         >
-          <div style={{ marginBottom: '10px' }}>
-            <label style={{ marginBottom: '5px' }}>Data de Término:</label>
-            <input
-              type="date"
-              style={{
-                padding: '5px',
-                borderRadius: '5px',
-                border: '1px solid #CED2D6',
-              }}
-            />
-          </div>
-          <div>
-            <label style={{ marginBottom: '5px' }}>Horário de Término:</label>
-            <input
-              type="time"
-              style={{
-                padding: '5px',
-                borderRadius: '5px',
-                border: '1px solid #CED2D6',
-              }}
-            />
+          <div style={{ display: 'flex', gap: '2px' }}>
+            <div style={{ marginBottom: '10px' }}>
+              <label style={{ marginBottom: '5px', marginRight: '-50px' }}>
+                Data de Término:
+              </label>
+              <input
+                type="date"
+                style={{
+                  padding: '5px',
+                  borderRadius: '5px',
+                  border: '1px solid #CED2D6',
+                }}
+              />
+            </div>
+            <div>
+              <label style={{ marginBottom: '5px', marginRight: '10px' }}>
+                Horário de Término:
+              </label>
+              <input
+                type="time"
+                style={{
+                  padding: '5px',
+                  borderRadius: '5px',
+                  border: '1px solid #CED2D6',
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
       <div
-        style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}
+        style={{
+          backgroundColor: '#F7F8F9',
+          padding: '20px',
+          borderRadius: '5px',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
-        <div
-          style={{ marginRight: '20px', display: 'flex', alignItems: 'center' }}
-        >
-          <label
-            style={{
-              marginRight: '10px',
-              backgroundColor: '#F7F8F9',
-              padding: '5px',
-              borderRadius: '5px',
-            }}
-          >
-            Liberar feriados nacionais:
-          </label>
-          <div
-            className="toggle"
-            style={{
-              backgroundColor: '#F7F8F9',
-              padding: '5px',
-              borderRadius: '20px',
-            }}
-          >
-            <input type="checkbox" />
-            <span className="slider"></span>
+        <div style={{ display: 'flex', gap: '90' }}>
+          <div style={{ marginBottom: '10px' }}>
+            <input
+              type="checkbox"
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
+            />
+            <label style={{ marginBottom: '5px' }}>
+              Liberar feriados nacionais
+            </label>
           </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <label
-            style={{
-              marginRight: '10px',
-              backgroundColor: '#F7F8F9',
-              padding: '5px',
-              borderRadius: '5px',
-            }}
-          >
-            Liberar domingos:
-          </label>
-          <div
-            className="toggle"
-            style={{
-              backgroundColor: '#F7F8F9',
-              padding: '5px',
-              borderRadius: '20px',
-            }}
-          >
-            <input type="checkbox" />
-            <span className="slider"></span>
+          <div>
+            <input
+              type="checkbox"
+              style={{
+                padding: '5px',
+                borderRadius: '5px',
+                border: '1px solid #CED2D6',
+              }}
+            />
+            <label style={{ marginBottom: '5px' }}>Liberar domingos</label>
           </div>
         </div>
       </div>

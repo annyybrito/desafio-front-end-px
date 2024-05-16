@@ -1,4 +1,6 @@
-* 
+body {
+  overflow-x: hidden;
+}
 h2, label, p {
   font-family: 'Poppins', sans-serif;
 }

@@ -38,7 +38,7 @@ const MyCalendar = ({ contractDetails }) => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          marginTop: '20px',
+          marginTop: '10px',
         }}
       >
         <button
@@ -46,7 +46,7 @@ const MyCalendar = ({ contractDetails }) => {
             border: 'none',
             backgroundColor: 'white',
             marginLeft: '400px',
-            marginTop: '10px',
+            marginTop: '-10px',
           }}
           onClick={() =>
             setDate((prevDate) =>
@@ -69,7 +69,7 @@ const MyCalendar = ({ contractDetails }) => {
             border: 'none',
             backgroundColor: 'white',
             marginRight: '400px',
-            marginTop: '10px',
+            marginTop: '-10px',
           }}
           onClick={() =>
             setDate((prevDate) => moment(prevDate).add(1, 'month').toDate())
@@ -81,7 +81,7 @@ const MyCalendar = ({ contractDetails }) => {
       <div
         style={{
           width: '780px',
-          height: '400px',
+          height: '370px',
           margin: 'auto', // Para centralizar o calendário horizontalmente
         }}
       >
@@ -99,15 +99,43 @@ const MyCalendar = ({ contractDetails }) => {
       </div>
       <div className="row justify-content-center mt-4">
         <div className="col-md-6">
-          <div className="form-check form-switch">
-            <button className="btn btn-primary"></button>
-            <label className="form-check-label">Períodos de serviço</label>
+          <div
+            className="form-check form-switch"
+            style={{ marginLeft: '450px' }}
+          >
+            <button
+              className="btn btn-primary"
+              style={{
+                backgroundColor: '#FF7E2E',
+                border: 'none',
+                width: '50px',
+              }}
+            ></button>
+            <label
+              className="form-check-label"
+              style={{ marginLeft: '10px', fontWeight: 'bold' }}
+            >
+              Períodos de serviço
+            </label>
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-check form-switch">
-            <button className="btn btn-secondary"></button>
-            <label className="form-check-label">Períodos Livres</label>
+            <button
+              className="btn btn-secondary"
+              style={{
+                backgroundColor: '#2E9A3E',
+                width: '50px',
+                borderRadius: '100px',
+                border: 'none',
+              }}
+            ></button>
+            <label
+              className="form-check-label"
+              style={{ marginLeft: '10px', fontWeight: 'bold' }}
+            >
+              Períodos Livres
+            </label>
           </div>
         </div>
       </div>

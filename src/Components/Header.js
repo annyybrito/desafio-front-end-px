@@ -9,6 +9,13 @@ const Header = () => {
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
+      <img
+        src={calendarIcon}
+        style={{
+          marginRight: '750px',
+        }}
+      />
+
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <h2
           style={{

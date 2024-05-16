@@ -18,6 +18,14 @@ function DatePicker({ props }) {
       className="form-control custom-datepicker"
       onFocus={onFocus}
       {...props}
+      style={{
+        width: '141px',
+        height: '38px',
+        paddingLeft: '30px',
+        borderRadius: '8px',
+        border: '1px solid #CED2D6',
+        justifyContent: 'center',
+      }}
     />
   );
 }

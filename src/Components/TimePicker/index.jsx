@@ -27,7 +27,7 @@ const CustomHourInput = ({ value, onChange, name }) => {
       style={{
         width: '141px',
         height: '38px',
-        paddingLeft: '10px',
+        paddingLeft: '30px',
         borderRadius: '8px',
         border: '1px solid #CED2D6',
       }}

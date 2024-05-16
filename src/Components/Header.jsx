@@ -88,7 +88,7 @@ const Header = () => {
                   top: '12px',
                   width: '20px',
                   height: '20px',
-                  marginRight: '120px',
+                  marginRight: '105px',
                   marginTop: '25px',
                 }}
               />
@@ -110,7 +110,7 @@ const Header = () => {
                 alt="Ícone do calendário"
                 style={{
                   position: 'absolute',
-                  right: '950px',
+                  right: '945px',
                   marginTop: '10px',
                 }}
               />
@@ -154,7 +154,7 @@ const Header = () => {
                     cursor: 'pointer',
                     zIndex: 2,
                     marginRight: '105px',
-                    marginTop: '14px',
+                    marginTop: '1px',
                   }}
                 />
               </div>
@@ -176,7 +176,7 @@ const Header = () => {
                 alt="Ícone do calendário"
                 style={{
                   position: 'absolute',
-                  right: '560px',
+                  right: '570px',
                   marginTop: '10px',
                 }}
               />

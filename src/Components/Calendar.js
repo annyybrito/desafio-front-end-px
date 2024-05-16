@@ -56,8 +56,12 @@ const MyCalendar = ({ contractDetails }) => {
         >
           <img src={Anterior} alt="Ícone do Anterior" />
         </button>
-        <span style={{ margin: '0 20px', fontSize: '1.2em' }}>
-          {moment(date).format('MMMM YYYY')}
+        <span
+          style={{ margin: '0 20px', fontSize: '1.2em', fontWeight: 'bold' }}
+        >
+          {moment(date)
+            .format('MMMM [de] YYYY')
+            .replace(/^\w/, (c) => c.toUpperCase())}
         </span>
 
         <button
@@ -76,32 +80,35 @@ const MyCalendar = ({ contractDetails }) => {
       </div>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          fontWeight: 'bold',
+          width: '780px',
+          height: '400px',
+          margin: 'auto', // Para centralizar o calendário horizontalmente
         }}
       >
-        <div
-          style={{
-            width: '780px',
-            height: '400px',
-            marginTop: '-340px',
-            fontWeight: 'bold',
-          }}
-        >
-          <BigCalendar
-            localizer={localizer}
-            events={[]}
-            startAccessor="start"
-            endAccessor="end"
-            toolbar={false} // Remover a barra de ferramentas padrão
-            components={{ toolbar: CustomToolbar }} // Usar o componente de barra de ferramentas personalizado
-            date={date}
-            onNavigate={setDate}
-            contractDetails={contractDetails} // Passar os detalhes do contrato para o calendário
-          />
+        <BigCalendar
+          localizer={localizer}
+          events={[]}
+          startAccessor="start"
+          endAccessor="end"
+          toolbar={false} // Remover a barra de ferramentas padrão
+          components={{ toolbar: CustomToolbar }} // Usar o componente de barra de ferramentas personalizado
+          date={date}
+          onNavigate={setDate}
+          contractDetails={contractDetails} // Passar os detalhes do contrato para o calendário
+        />
+      </div>
+      <div className="row justify-content-center mt-4">
+        <div className="col-md-6">
+          <div className="form-check form-switch">
+            <button className="btn btn-primary"></button>
+            <label className="form-check-label">Períodos de serviço</label>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-check form-switch">
+            <button className="btn btn-secondary"></button>
+            <label className="form-check-label">Períodos Livres</label>
+          </div>
         </div>
       </div>
     </div>

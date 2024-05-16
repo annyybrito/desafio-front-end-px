@@ -1,6 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calendarIcon from './Assets/calendardays.png';
+import calendarCheck from './Assets/calendar-check.png';
+import clock from './Assets/clock-8.png';
 
 const Header = () => {
   return (
@@ -8,11 +10,6 @@ const Header = () => {
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <img
-          src={calendarIcon}
-          alt="Ícone do calendário"
-          style={{ position: 'absolute', top: '40px', right: '1110px' }}
-        />
         <h2
           style={{
             color: '#333',
@@ -37,7 +34,7 @@ const Header = () => {
           }}
         >
           <div style={{ display: 'flex', gap: '4px' }}>
-            <div style={{ marginBottom: '10px' }}>
+            <div style={{ marginBottom: '10px', position: 'relative' }}>
               <label
                 style={{
                   marginBottom: '5px',
@@ -49,7 +46,7 @@ const Header = () => {
                 Data de Início:
               </label>
               <input
-                type="date"
+                type="text"
                 style={{
                   width: '141px',
                   height: '38px',
@@ -57,6 +54,19 @@ const Header = () => {
                   padding: '5px',
                   borderRadius: '8px',
                   border: '1px solid #CED2D6',
+                }}
+              />
+              <img
+                src={calendarCheck}
+                alt="Ícone do calendário"
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '12px',
+                  width: '20px',
+                  height: '20px',
+                  marginRight: '105px',
+                  marginTop: '25px',
                 }}
               />
             </div>
@@ -72,7 +82,7 @@ const Header = () => {
                 Horário de Início:
               </label>
               <input
-                type="time"
+                type="text"
                 style={{
                   width: '141px',
                   height: '38px',
@@ -80,6 +90,15 @@ const Header = () => {
                   padding: '5px',
                   borderRadius: '8px',
                   border: '1px solid #CED2D6',
+                }}
+              />
+              <img
+                src={clock}
+                alt="Ícone do calendário"
+                style={{
+                  position: 'absolute',
+                  right: '950px',
+                  marginTop: '10px',
                 }}
               />
             </div>
@@ -96,7 +115,7 @@ const Header = () => {
           }}
         >
           <div style={{ display: 'flex', gap: '4px' }}>
-            <div style={{ marginBottom: '10px' }}>
+            <div style={{ marginBottom: '10px', position: 'relative' }}>
               <label
                 style={{
                   marginBottom: '5px',
@@ -107,16 +126,37 @@ const Header = () => {
               >
                 Data de Término:
               </label>
-              <input
-                type="date"
-                style={{
-                  width: '141px',
-                  height: '38px',
-                  padding: '5px',
-                  borderRadius: '8px',
-                  border: '1px solid #CED2D6',
-                }}
-              />
+              <div tyle={{ position: 'relative' }}>
+                <input
+                  type="text"
+                  style={{
+                    width: '141px',
+                    height: '38px',
+                    marginLeft: '-5px',
+                    padding: '5px',
+                    borderRadius: '8px',
+                    border: '1px solid #CED2D6',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                />
+                <img
+                  src={calendarCheck}
+                  alt="Ícone do calendário"
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '20px',
+                    height: '20px',
+                    cursor: 'pointer',
+                    zIndex: 2,
+                    marginRight: '105px',
+                    marginTop: '14px',
+                  }}
+                />
+              </div>
             </div>
             <div>
               <label
@@ -130,13 +170,23 @@ const Header = () => {
                 Horário de Fim:
               </label>
               <input
-                type="time"
+                type="text"
                 style={{
                   width: '141px',
                   height: '38px',
                   padding: '5px',
                   borderRadius: '8px',
                   border: '1px solid #CED2D6',
+                }}
+              />
+
+              <img
+                src={clock}
+                alt="Ícone do calendário"
+                style={{
+                  position: 'absolute',
+                  right: '560px',
+                  marginTop: '10px',
                 }}
               />
             </div>

@@ -6,6 +6,7 @@ import calendarIcon from './Assets/calendardays.png';
 import calendarCheck from './Assets/calendar-check.png';
 import clock from './Assets/clock-8.png';
 
+/* Indicador das horas, inputs de hora de inicio e hora de termino */
 const CustomHourInput = ({ value, onChange }) => {
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -29,6 +30,7 @@ const CustomHourInput = ({ value, onChange }) => {
   );
 };
 
+/* Define data de inicio e termino */
 const Header = () => {
   // Defina os estados para as datas de início e término
   const [startDate, setStartDate] = useState(null);
@@ -37,6 +39,7 @@ const Header = () => {
   const [endTime, setEndTime] = useState('');
 
   return (
+    /*ícone de calendario e h2 do header*/
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >

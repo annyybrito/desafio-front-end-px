@@ -6,8 +6,6 @@ import 'moment/locale/pt-br';
 import Anterior from './Assets/anterior.svg';
 import Proximo from './Assets/proximo.svg';
 
-import { Toolbar } from 'react-big-calendar';
-
 // Defina o localizador de data para português
 moment.locale('pt-br');
 const localizer = momentLocalizer(moment);

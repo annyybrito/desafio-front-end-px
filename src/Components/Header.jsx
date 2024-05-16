@@ -1,47 +1,28 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css'; // Importe o CSS do react-datepicker
-import DatePicker from 'react-datepicker'; // Importe o componente DatePicker do react-datepicker
+import DatePicker from './DatePicker';
+import TimePicker from './TimePicker';
 import calendarIcon from './Assets/calendardays.png';
 import calendarCheck from './Assets/calendar-check.png';
 import clock from './Assets/clock-8.png';
+import CustomHourInput from './TimePicker';
 
-/* Indicador das horas, inputs de hora de inicio e hora de termino */
-const CustomHourInput = ({ value, onChange }) => {
-  const handleChange = (event) => {
-    const inputValue = event.target.value;
-    onChange(inputValue);
+const Header = () => {
+  const formRef = useRef(null);
+
+  const onChangeForm = () => {
+    const formData = new FormData(formRef.current);
+    const inputFields = Object.fromEntries(formData);
+    console.log('inputFields =>', inputFields);
   };
 
+  const finalTime = 'finalTime';
   return (
-    <input
-      type="text"
-      value={value}
-      onChange={handleChange}
-      style={{
-        width: '141px',
-        height: '38px',
-        paddingLeft: '10px',
-        borderRadius: '8px',
-        border: '1px solid #CED2D6',
-      }}
-      placeholder="HH:MM" // Placeholder para indicar o formato esperado
-    />
-  );
-};
-
-/* Define data de inicio e termino */
-const Header = () => {
-  // Defina os estados para as datas de início e término
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-
-  return (
-    /*ícone de calendario e h2 do header*/
-    <div
+    <form
+      ref={formRef}
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      onChange={onChangeForm}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <img
@@ -50,6 +31,7 @@ const Header = () => {
             marginLeft: '50px',
             marginTop: '30px',
           }}
+          alt="calendar icon"
         />
         <h2
           style={{
@@ -62,6 +44,7 @@ const Header = () => {
           Período de Contrato
         </h2>
       </div>
+
       <div style={{ marginBottom: '20px', display: 'flex' }}>
         <div
           style={{
@@ -86,7 +69,6 @@ const Header = () => {
               >
                 Data de Início:
               </label>
-              {/* Substitua o input com o DatePicker */}
               <div
                 style={{
                   textAlign: 'left',
@@ -94,14 +76,7 @@ const Header = () => {
                   width: '141px',
                 }}
               >
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                  className="form-control custom-datepicker" // Adicione a classe personalizada junto com a classe do Bootstrap
-                  calendarClassName="custom-calendar" // Adicione uma classe personalizada para o calendário
-                  placeholderText="YY/MM/YYYY" // Define o texto pré-preenchido
-                />
+                <DatePicker name="initialDate" />
               </div>
 
               <img
@@ -129,8 +104,7 @@ const Header = () => {
               >
                 Horário de Início:
               </label>
-              {/* Substitua o input com o componente de entrada de hora personalizado */}
-              <CustomHourInput value={startTime} onChange={setStartTime} />
+              <TimePicker name="initialTime" />
               <img
                 src={clock}
                 alt="Ícone do calendário"
@@ -165,15 +139,8 @@ const Header = () => {
               >
                 Data de Término:
               </label>
-              <div tyle={{ position: 'relative' }}>
-                {/* Substitua o input com o DatePicker */}
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                  className="form-control custom-datepicker" // Adicione a classe personalizada junto com a classe do Bootstrap
-                  placeholderText="dd/MM/YYYY"
-                />
+              <div style={{ position: 'relative' }}>
+                <DatePicker name="finalDate" />
                 <img
                   src={calendarCheck}
                   alt="Ícone do calendário"
@@ -203,8 +170,7 @@ const Header = () => {
               >
                 Horário de Fim:
               </label>
-              {/* Substitua o input com o componente de entrada de hora personalizado */}
-              <CustomHourInput value={endTime} onChange={setEndTime} />
+              <CustomHourInput name={finalTime} />
               <img
                 src={clock}
                 alt="Ícone do calendário"
@@ -240,6 +206,7 @@ const Header = () => {
           <div style={{ marginBottom: '10px' }}>
             <div className="form-check form-switch">
               <input
+                name="holidays"
                 className="form-check-input"
                 type="checkbox"
                 id="nationalHolidaysSwitch"
@@ -259,6 +226,7 @@ const Header = () => {
           <div>
             <div className="form-check form-switch">
               <input
+                name="sundays"
                 className="form-check-input"
                 type="checkbox"
                 id="sundaysSwitch"
@@ -277,7 +245,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

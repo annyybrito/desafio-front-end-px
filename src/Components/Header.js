@@ -9,20 +9,20 @@ const Header = () => {
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <img
-        src={calendarIcon}
-        style={{
-          marginRight: '750px',
-        }}
-      />
-
       <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={calendarIcon}
+          style={{
+            marginLeft: '50px',
+            marginTop: '30px',
+          }}
+        />
         <h2
           style={{
             color: '#333',
-            marginRight: '520px',
-            marginTop: '42px',
-            fontSize: '16px',
+            marginRight: '580px',
+            marginTop: '40px',
+            fontSize: '20px',
           }}
         >
           Período de Contrato

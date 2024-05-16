@@ -39,6 +39,8 @@ const Header = () => {
             marginRight: '580px',
             marginTop: '40px',
             fontSize: '20px',
+            fontWeight: 'bold',
+            marginLeft: '5px',
           }}
         >
           Período de Contrato

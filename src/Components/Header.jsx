@@ -247,6 +247,20 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <button
+        style={{
+          width: '60px',
+          borderRadius: '5px',
+          border: 'none',
+          backgroundColor: 'orange',
+          color: 'white',
+          marginTop: '-30px',
+          cursor: 'pointer',
+          marginLeft: '15px',
+        }}
+      >
+        Enviar
+      </button>
     </form>
   );
 };

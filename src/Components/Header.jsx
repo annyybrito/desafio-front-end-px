@@ -7,44 +7,71 @@ import calendarIcon from './Assets/calendardays.png';
 import calendarCheck from './Assets/calendar-check.png';
 import clock from './Assets/clock-8.png';
 import CustomHourInput from './TimePicker';
-import { getHolidays } from './api';
+import { getAllHolidaysByYear } from '../services/holidays_api';
+import { getAllSundays, getYearsInRange } from '../helpers/dateHandlers';
 
 const Header = () => {
   const formRef = useRef(null);
-  const [contractDetails, setContractDetails] = useState({
-    initialDate: '',
-    initialTime: '',
-    finalDate: '',
-    finalTime: '',
-    holidays: false,
-    sundays: false,
-  });
-  const [holidays, setHolidays] = useState([]);
 
-  useEffect(() => {
-    getHolidays().then((data) => {
-      setHolidays(data);
-    });
-  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const onChangeForm = () => {
     const formData = new FormData(formRef.current);
-    const inputFields = Object.fromEntries(formData);
-    setContractDetails((prevContractDetails) => ({
-      ...prevContractDetails,
-      ...inputFields,
-    }));
-  };
+    const inputs = Object.fromEntries(formData);
+    if (!(inputs.initialDate && inputs.initialTime)) {
+      alert('Selecione uma Data Inicial e um Horário Inicial');
+      return;
+    }
+    if (inputs.initialDate && inputs.initialTime) {
+      inputs.initialDate = new Date(
+        inputs.initialDate + ' ' + inputs.initialTime + ':00',
+      );
+    }
+    if (!(inputs.finalDate && inputs.finalTime)) {
+      alert('Selecione uma Data Final e um Horário Final');
+      return;
+    }
+    if (inputs.finalDate && inputs.finalTime) {
+      inputs.finalDate = new Date(
+        inputs.finalDate + ' ' + inputs.finalTime + ':00',
+      );
+    }
 
-  const handleSubmit = async () => {
-    console.log('Detalhes do contrato:', contractDetails);
+    let allDaysOff = [];
+    // Get Sundays in the Date rangE
+    if (inputs.sundays === 'on') {
+      const allSundays = getAllSundays(inputs.initialDate, inputs.finalDate);
+      allDaysOff.push(allSundays);
+      console.log('allSundays => ', allSundays);
+    }
+    // Get Years in the Date Range
+    const years = getYearsInRange(inputs.initialDate, inputs.finalDate);
 
-    const allDaysOff = [
-      ...(contractDetails.days_off || []),
-      ...holidays.map((holiday) => holiday.date),
-    ];
+    // Get all Holidays in the Years in the Date range
+    if (inputs.holidays === 'on') {
+      const allHolidaysInYearsList = (
+        await Promise.all(years.map((year) => getAllHolidaysByYear(year)))
+      ).flat();
+      const standarzingDates = allHolidaysInYearsList.map((holiday) => {
+        const [year, month, day] = holiday.date.split('-');
+        return `${day}/${month}/${year}`;
+      });
+      allDaysOff.push(standarzingDates);
+      console.log('allHolidaysInYearsList => ', standarzingDates);
+    }
 
-    console.log('Dias livres combinados:', allDaysOff);
+    console.log('years => ', years);
+
+    // mergin all holidays array and sundays in a single array in a Set to not repeat any Date and revert back to array.
+    const notRepeatedAllDaysOff = Array.from(
+      new Set(allDaysOff.flat()).values(),
+    );
+    const calendarData = {
+      start_at: inputs.initialDate,
+      end_at: inputs.finalDate,
+      days_off: notRepeatedAllDaysOff,
+    };
+    console.log('Calendar Data:', calendarData);
   };
 
   const finalTime = 'finalTime';
@@ -57,7 +84,6 @@ const Header = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}
-      onChange={onChangeForm}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <img
@@ -270,7 +296,7 @@ const Header = () => {
               <label
                 style={{
                   fontSize: '14px',
-                  marginTop: '-2px',
+                  marginTop: '-10px',
                   marginLeft: '10px',
                 }}
               >

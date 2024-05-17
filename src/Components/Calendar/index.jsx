@@ -3,8 +3,9 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import 'moment/locale/pt-br';
-import Anterior from './Assets/anterior.svg';
-import Proximo from './Assets/proximo.svg';
+import Anterior from '../Assets/anterior.svg';
+import Proximo from '../Assets/proximo.svg';
+import MonthView from './MonthView';
 
 moment.locale('pt-br');
 const localizer = momentLocalizer(moment);
@@ -41,7 +42,7 @@ const MyCalendar = ({ contractDetails }) => {
           style={{
             border: 'none',
             backgroundColor: 'white',
-            marginLeft: '400px',
+            marginLeft: '480px',
             marginTop: '-10px',
           }}
           onClick={() =>
@@ -81,7 +82,8 @@ const MyCalendar = ({ contractDetails }) => {
           margin: 'auto',
         }}
       >
-        <BigCalendar
+        <MonthView month={date.getMonth()} year={date.getFullYear()} />
+        {/* <BigCalendar
           localizer={localizer}
           events={[]}
           startAccessor="start"
@@ -91,7 +93,7 @@ const MyCalendar = ({ contractDetails }) => {
           date={date}
           onNavigate={setDate}
           contractDetails={contractDetails}
-        />
+        /> */}
       </div>
       <div className="row justify-content-center mt-4">
         <div className="col-md-6">
@@ -105,18 +107,26 @@ const MyCalendar = ({ contractDetails }) => {
                 backgroundColor: '#FF7E2E',
                 border: 'none',
                 width: '50px',
+                marginLeft: '200px',
               }}
             ></button>
             <label
               className="form-check-label"
-              style={{ marginLeft: '10px', fontWeight: 'bold' }}
+              style={{
+                marginLeft: '20px',
+                fontWeight: 'bold',
+                marginTop: '130px',
+              }}
             >
               Períodos de serviço
             </label>
           </div>
         </div>
         <div className="col-md-6">
-          <div className="form-check form-switch">
+          <div
+            className="form-check form-switch"
+            style={{ marginTop: '125px' }}
+          >
             <button
               className="btn btn-secondary"
               style={{

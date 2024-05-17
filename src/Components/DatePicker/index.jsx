@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './styles.css';
 
-function DatePicker({ props }) {
+function DatePicker(props) {
   const inputRef = useRef(null);
 
   const onFocus = () => {
@@ -13,11 +13,9 @@ function DatePicker({ props }) {
   return (
     <input
       ref={inputRef}
-      name="initialDate"
       type="date"
       className="form-control custom-datepicker"
       onFocus={onFocus}
-      {...props}
       style={{
         width: '141px',
         height: '38px',
@@ -26,6 +24,7 @@ function DatePicker({ props }) {
         border: '1px solid #CED2D6',
         justifyContent: 'center',
       }}
+      {...props}
     />
   );
 }

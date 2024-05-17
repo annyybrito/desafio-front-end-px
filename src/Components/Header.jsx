@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from './DatePicker';
@@ -7,14 +7,44 @@ import calendarIcon from './Assets/calendardays.png';
 import calendarCheck from './Assets/calendar-check.png';
 import clock from './Assets/clock-8.png';
 import CustomHourInput from './TimePicker';
+import { getHolidays } from './api';
 
 const Header = () => {
   const formRef = useRef(null);
+  const [contractDetails, setContractDetails] = useState({
+    initialDate: '',
+    initialTime: '',
+    finalDate: '',
+    finalTime: '',
+    holidays: false,
+    sundays: false,
+  });
+  const [holidays, setHolidays] = useState([]);
+
+  useEffect(() => {
+    getHolidays().then((data) => {
+      setHolidays(data);
+    });
+  }, []);
 
   const onChangeForm = () => {
     const formData = new FormData(formRef.current);
     const inputFields = Object.fromEntries(formData);
-    console.log('inputFields =>', inputFields);
+    setContractDetails((prevContractDetails) => ({
+      ...prevContractDetails,
+      ...inputFields,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    console.log('Detalhes do contrato:', contractDetails);
+
+    const allDaysOff = [
+      ...(contractDetails.days_off || []),
+      ...holidays.map((holiday) => holiday.date),
+    ];
+
+    console.log('Dias livres combinados:', allDaysOff);
   };
 
   const finalTime = 'finalTime';
@@ -261,6 +291,7 @@ const Header = () => {
           cursor: 'pointer',
           marginLeft: '15px',
         }}
+        onClick={handleSubmit}
       >
         Enviar
       </button>

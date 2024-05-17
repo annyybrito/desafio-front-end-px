@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-datepicker/dist/react-datepicker.css'; // Importe o CSS do react-datepicker
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 import calendarIcon from './Assets/calendardays.png';
@@ -18,19 +18,21 @@ const Header = () => {
   };
 
   const finalTime = 'finalTime';
+
   return (
     <form
       ref={formRef}
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
       onChange={onChangeForm}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <img
           src={calendarIcon}
-          style={{
-            marginLeft: '50px',
-            marginTop: '30px',
-          }}
+          style={{ marginLeft: '50px', marginTop: '30px' }}
           alt="calendar icon"
         />
         <h2
@@ -203,9 +205,10 @@ const Header = () => {
             gap: '100px',
             justifyContent: 'center',
             marginTop: '-15px',
+            marginRight: '20px',
           }}
         >
-          <div style={{ marginBottom: '10px' }}>
+          <div style={{ marginBottom: '10px', marginRight: '10px' }}>
             <div className="form-check form-switch">
               <input
                 name="holidays"
@@ -252,9 +255,9 @@ const Header = () => {
           width: '60px',
           borderRadius: '5px',
           border: 'none',
-          backgroundColor: 'orange',
+          backgroundColor: '#FF7E2E',
           color: 'white',
-          marginTop: '-30px',
+          marginTop: '-35px',
           cursor: 'pointer',
           marginLeft: '15px',
         }}

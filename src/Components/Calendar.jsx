@@ -6,11 +6,9 @@ import 'moment/locale/pt-br';
 import Anterior from './Assets/anterior.svg';
 import Proximo from './Assets/proximo.svg';
 
-// Defina o localizador de data para português
 moment.locale('pt-br');
 const localizer = momentLocalizer(moment);
 
-// Componente de barra de ferramentas personalizado
 const CustomToolbar = ({ label, onNavigate }) => {
   return (
     <div className="rbc-toolbar">
@@ -80,7 +78,7 @@ const MyCalendar = ({ contractDetails }) => {
         style={{
           width: '780px',
           height: '370px',
-          margin: 'auto', // Para centralizar o calendário horizontalmente
+          margin: 'auto',
         }}
       >
         <BigCalendar
@@ -88,11 +86,11 @@ const MyCalendar = ({ contractDetails }) => {
           events={[]}
           startAccessor="start"
           endAccessor="end"
-          toolbar={false} // Remover a barra de ferramentas padrão
-          components={{ toolbar: CustomToolbar }} // Usar o componente de barra de ferramentas personalizado
+          toolbar={false}
+          components={{ toolbar: CustomToolbar }}
           date={date}
           onNavigate={setDate}
-          contractDetails={contractDetails} // Passar os detalhes do contrato para o calendário
+          contractDetails={contractDetails}
         />
       </div>
       <div className="row justify-content-center mt-4">

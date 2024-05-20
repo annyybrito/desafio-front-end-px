@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import "./styles";
-import { MonthContainer, WeekContainer } from './styles';
+import { MonthContainer, WeekContainer, WeekDays, WeekDaysContainer } from './styles';
 import CalendarDay from './CalendarDay';
 import { getWeeksInMonth } from '../../helpers/dateHandlers';
 
@@ -11,6 +11,15 @@ function MonthView({ month, year }) {
     }, [month, year]);
     return (
         <MonthContainer>
+            <WeekDaysContainer>
+                <WeekDays>DOM</WeekDays>
+                <WeekDays>SEG</WeekDays>
+                <WeekDays>TER</WeekDays>
+                <WeekDays>QUA</WeekDays>
+                <WeekDays>QUI</WeekDays>
+                <WeekDays>SEX</WeekDays>
+                <WeekDays>SAB</WeekDays>
+            </WeekDaysContainer>
             {
                 amountWeeks.map((week, i) =>
                     <WeekRow
@@ -34,8 +43,6 @@ function WeekRow({ weekDays, indexWeek, month, year }) {
             const sparseWeek = weekDays;
             const daysLeftOnWeek = 7 - weekDays.length;
             for (let i = 0; i < daysLeftOnWeek; i++) {
-                console.log("i => ", i)
-                console.log("sparseWeek[0]) => ", sparseWeek[0])
                 const newDate = new Date(sparseWeek[0]);
                 newDate.setDate(newDate.getDate() - 1);
                 sparseWeek.unshift(newDate)

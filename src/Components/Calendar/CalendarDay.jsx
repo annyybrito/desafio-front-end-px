@@ -3,14 +3,13 @@ import moment from 'moment';
 
 import './styles';
 import { CalendarDayContainer } from './styles';
-
-const date = {
-  start_at: '2024-05-01T21:07:00.000Z',
-  end_at: '2024-05-31T03:07:00.000Z',
-  days_off: ['05/05/2024', '12/05/2024', '19/05/2024', '26/05/2024'],
-};
+import { useCalendarContext } from '../../providers/CalendarProvider';
 
 function CalendarDay({ weekDay, month }) {
+  const { dateContract } = useCalendarContext();
+
+  console.log('dateContract:', dateContract);
+
   const [weekDate, isMonthDay] = useMemo(() => {
     const _weekDate = new Date(weekDay);
     const _isMonthDay = _weekDate.getMonth() === month;
@@ -18,8 +17,10 @@ function CalendarDay({ weekDay, month }) {
   }, [month, weekDay]);
 
   const isFree = useMemo(() => {
-    return date.days_off.includes(moment(weekDate).format('DD/MM/YYYY'));
-  }, [weekDate]);
+    return dateContract.days_off.includes(
+      moment(weekDate).format('DD/MM/YYYY'),
+    );
+  }, [dateContract.days_off, weekDate]);
 
   return (
     <CalendarDayContainer $active={isMonthDay}>

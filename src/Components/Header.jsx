@@ -1,16 +1,20 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 import calendarIcon from './Assets/calendardays.png';
 import calendarCheck from './Assets/calendar-check.png';
-import clock from './Assets/clock-8.png';
-import CustomHourInput from './TimePicker';
 import { getAllHolidaysByYear } from '../services/holidays_api';
-import { getAllSundays, getYearsInRange } from '../helpers/dateHandlers';
+import {
+  filterDatesInRange,
+  getAllSundays,
+  getYearsInRange,
+} from '../helpers/dateHandlers';
+import { useCalendarContext } from '../providers/CalendarProvider';
 
 const Header = () => {
+  const { setDateContract } = useCalendarContext();
   const formRef = useRef(null);
 
   const handleSubmit = async (event) => {
@@ -18,37 +22,27 @@ const Header = () => {
 
     const formData = new FormData(formRef.current);
     const inputs = Object.fromEntries(formData);
-    if (!(inputs.initialDate && inputs.initialTime)) {
+    console.log('Form Data:', formData);
+    console.log('Inputs:', inputs);
+
+    if (!inputs.initialDate || !inputs.initialTime) {
       alert('Selecione uma Data Inicial e um Horário Inicial');
       return;
     }
-    if (inputs.initialDate && inputs.initialTime) {
-      inputs.initialDate = new Date(
-        inputs.initialDate + ' ' + inputs.initialTime + ':00',
-      );
-    }
-    if (!(inputs.finalDate && inputs.finalTime)) {
+
+    if (!inputs.finalDate || !inputs.finalTime) {
       alert('Selecione uma Data Final e um Horário Final');
       return;
     }
-    if (inputs.finalDate && inputs.finalTime) {
-      inputs.finalDate = new Date(
-        inputs.finalDate + ' ' + inputs.finalTime + ':00',
-      );
-    }
 
     let allDaysOff = [];
-    // Get Sundays in the Date rangE
-    if (inputs.sundays === 'on') {
+    if (inputs.sundays !== 'on') {
       const allSundays = getAllSundays(inputs.initialDate, inputs.finalDate);
       allDaysOff.push(allSundays);
-      console.log('allSundays => ', allSundays);
     }
-    // Get Years in the Date Range
     const years = getYearsInRange(inputs.initialDate, inputs.finalDate);
 
-    // Get all Holidays in the Years in the Date range
-    if (inputs.holidays === 'on') {
+    if (inputs.holidays !== 'on') {
       const allHolidaysInYearsList = (
         await Promise.all(years.map((year) => getAllHolidaysByYear(year)))
       ).flat();
@@ -57,24 +51,22 @@ const Header = () => {
         return `${day}/${month}/${year}`;
       });
       allDaysOff.push(standarzingDates);
-      console.log('allHolidaysInYearsList => ', standarzingDates);
     }
 
-    console.log('years => ', years);
-
-    // mergin all holidays array and sundays in a single array in a Set to not repeat any Date and revert back to array.
     const notRepeatedAllDaysOff = Array.from(
       new Set(allDaysOff.flat()).values(),
     );
     const calendarData = {
       start_at: inputs.initialDate,
       end_at: inputs.finalDate,
-      days_off: notRepeatedAllDaysOff,
+      days_off: filterDatesInRange(
+        notRepeatedAllDaysOff,
+        inputs.initialDate,
+        inputs.finalDate,
+      ),
     };
-    console.log('Calendar Data:', calendarData);
+    setDateContract(calendarData);
   };
-
-  const finalTime = 'finalTime';
 
   return (
     <form
@@ -153,28 +145,7 @@ const Header = () => {
                 }}
               />
             </div>
-            <div>
-              <label
-                style={{
-                  marginBottom: '5px',
-                  marginRight: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                }}
-              >
-                Horário de Início:
-              </label>
-              <TimePicker name="initialTime" />
-              <img
-                src={clock}
-                alt="Ícone do calendário"
-                style={{
-                  position: 'absolute',
-                  right: '945px',
-                  marginTop: '10px',
-                }}
-              />
-            </div>
+            <TimePicker label="Horário de Início" name="initialTime" />
           </div>
         </div>
         <div
@@ -219,28 +190,7 @@ const Header = () => {
                 />
               </div>
             </div>
-            <div>
-              <label
-                style={{
-                  marginBottom: '5px',
-                  marginRight: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                }}
-              >
-                Horário de Fim:
-              </label>
-              <CustomHourInput name={finalTime} />
-              <img
-                src={clock}
-                alt="Ícone do calendário"
-                style={{
-                  position: 'absolute',
-                  right: '570px',
-                  marginTop: '10px',
-                }}
-              />
-            </div>
+            <TimePicker label="Horário de Fim" name="finalDate" />
           </div>
         </div>
       </div>
@@ -306,21 +256,32 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <button
+      <div
         style={{
-          width: '60px',
-          borderRadius: '5px',
-          border: 'none',
-          backgroundColor: '#FF7E2E',
-          color: 'white',
-          marginTop: '-35px',
-          cursor: 'pointer',
-          marginLeft: '15px',
+          width: '100%',
+          maxWidth: 780,
+          alignSelf: 'center',
+          display: 'flex',
+          justifyContent: 'end',
+          margin: '1rem 0px 2rem 0px',
+          padding: '0px 1rem',
         }}
-        onClick={handleSubmit}
       >
-        Enviar
-      </button>
+        <button
+          style={{
+            width: '80px',
+            borderRadius: '5px',
+            border: 'none',
+            backgroundColor: '#FF7E2E',
+            color: 'white',
+            cursor: 'pointer',
+            padding: '4px 1rem',
+          }}
+          onClick={handleSubmit}
+        >
+          Enviar
+        </button>
+      </div>
     </form>
   );
 };

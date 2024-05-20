@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
+import { momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -10,22 +10,6 @@ import MonthView from './MonthView';
 moment.locale('pt-br');
 const localizer = momentLocalizer(moment);
 
-const CustomToolbar = ({ label, onNavigate }) => {
-  return (
-    <div className="rbc-toolbar">
-      <span className="rbc-btn-group">
-        <button type="button" onClick={() => onNavigate('PREV')}>
-          Anterior
-        </button>
-        <button type="button" onClick={() => onNavigate('NEXT')}>
-          Próximo
-        </button>
-      </span>
-      <span className="rbc-toolbar-label">{label}</span>
-    </div>
-  );
-};
-
 const MyCalendar = ({ contractDetails }) => {
   const [date, setDate] = useState(new Date());
 
@@ -34,46 +18,52 @@ const MyCalendar = ({ contractDetails }) => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
-          marginTop: '10px',
+          justifyContent: 'center',
         }}
       >
-        <button
+        <div
           style={{
-            border: 'none',
-            backgroundColor: 'white',
-            marginLeft: '480px',
-            marginTop: '-10px',
+            width: '100%',
+            maxWidth: 780,
+            display: 'flex',
+            justifyContent: 'space-between',
           }}
-          onClick={() =>
-            setDate((prevDate) =>
-              moment(prevDate).subtract(1, 'month').toDate(),
-            )
-          }
         >
-          <img src={Anterior} alt="Ícone do Anterior" />
-        </button>
-        <span
-          style={{ margin: '0 20px', fontSize: '1.2em', fontWeight: 'bold' }}
-        >
-          {moment(date)
-            .format('MMMM [de] YYYY')
-            .replace(/^\w/, (c) => c.toUpperCase())}
-        </span>
+          <button
+            style={{
+              border: 'none',
+              backgroundColor: 'white',
+              marginTop: '-10px',
+            }}
+            onClick={() =>
+              setDate((prevDate) =>
+                moment(prevDate).subtract(1, 'month').toDate(),
+              )
+            }
+          >
+            <img src={Anterior} alt="Ícone do Anterior" />
+          </button>
+          <span
+            style={{ margin: '0 20px', fontSize: '1.2em', fontWeight: 'bold' }}
+          >
+            {moment(date)
+              .format('MMMM [de] YYYY')
+              .replace(/^\w/, (c) => c.toUpperCase())}
+          </span>
 
-        <button
-          style={{
-            border: 'none',
-            backgroundColor: 'white',
-            marginRight: '400px',
-            marginTop: '-10px',
-          }}
-          onClick={() =>
-            setDate((prevDate) => moment(prevDate).add(1, 'month').toDate())
-          }
-        >
-          <img src={Proximo} alt="Ícone do Próximo" />
-        </button>
+          <button
+            style={{
+              border: 'none',
+              backgroundColor: 'white',
+              marginTop: '-10px',
+            }}
+            onClick={() =>
+              setDate((prevDate) => moment(prevDate).add(1, 'month').toDate())
+            }
+          >
+            <img src={Proximo} alt="Ícone do Próximo" />
+          </button>
+        </div>
       </div>
       <div
         style={{
@@ -83,23 +73,12 @@ const MyCalendar = ({ contractDetails }) => {
         }}
       >
         <MonthView month={date.getMonth()} year={date.getFullYear()} />
-        {/* <BigCalendar
-          localizer={localizer}
-          events={[]}
-          startAccessor="start"
-          endAccessor="end"
-          toolbar={false}
-          components={{ toolbar: CustomToolbar }}
-          date={date}
-          onNavigate={setDate}
-          contractDetails={contractDetails}
-        /> */}
       </div>
       <div className="row justify-content-center mt-4">
         <div className="col-md-6">
           <div
             className="form-check form-switch"
-            style={{ marginLeft: '450px' }}
+            style={{ marginLeft: '450px', marginTop: '-50px' }}
           >
             <button
               className="btn btn-primary"
@@ -123,10 +102,7 @@ const MyCalendar = ({ contractDetails }) => {
           </div>
         </div>
         <div className="col-md-6">
-          <div
-            className="form-check form-switch"
-            style={{ marginTop: '125px' }}
-          >
+          <div className="form-check form-switch" style={{ marginTop: '80px' }}>
             <button
               className="btn btn-secondary"
               style={{

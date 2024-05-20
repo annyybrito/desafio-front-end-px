@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
+import clock from '../Assets/clock-8.png';
 
-const CustomHourInput = ({ value, onChange, name }) => {
+const CustomHourInput = ({ value, onChange, name, label }) => {
   const inputRef = useRef(null);
 
   const handleChange = (event) => {
@@ -17,22 +18,47 @@ const CustomHourInput = ({ value, onChange, name }) => {
   };
 
   return (
-    <input
-      ref={inputRef}
-      name={name}
-      type="time"
-      onFocus={onFocus} // Corrigido: onfocus para onFocus
-      value={value}
-      onChange={handleChange}
+    <div
       style={{
-        width: '141px',
-        height: '38px',
-        paddingLeft: '30px',
-        borderRadius: '8px',
-        border: '1px solid #CED2D6',
+        position: 'relative',
       }}
-      placeholder="HH:MM" // Placeholder para indicar o formato esperado
-    />
+    >
+      <label
+        style={{
+          marginBottom: '5px',
+          marginRight: '10px',
+          fontWeight: 'bold',
+          fontSize: '14px',
+        }}
+      >
+        {label}
+      </label>
+      <input
+        ref={inputRef}
+        name={name}
+        type="time"
+        onFocus={onFocus}
+        value={value}
+        onChange={handleChange}
+        style={{
+          width: '141px',
+          height: '38px',
+          paddingLeft: '30px',
+          borderRadius: '8px',
+          border: '1px solid #CED2D6',
+        }}
+        placeholder="HH:MM"
+      />
+      <img
+        src={clock}
+        alt="Ícone do calendário"
+        style={{
+          position: 'absolute',
+          left: '10px',
+          marginTop: '10px',
+        }}
+      />
+    </div>
   );
 };
 

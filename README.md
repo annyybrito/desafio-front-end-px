@@ -1,70 +1,29 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pasta Calendar
 
-## Available Scripts
+Dentro da pasta "Calendar", eu coloquei o arquivo CalendayDay.jsx, que tem como função representar os dias, que no caso seria weekDay e month.
+Logo depois tem o arquivo index.jsx que está importando as dependências, coloquei o 'momento' para manipulação das datas e que permite a navegação entre os meses com os botões "anterior" e "próximo", além disso, o calendário exibe os meses e anos em português e inclui uma visão personalizada do mês através do component "MonthView", e também há a criação dos botões de indicaçações de períodos de serviços e períodos livres.
 
-In the project directory, you can run:
+No arquivo "MonthView", exibe uma visão mensal de um calendário, utilizando o "useMemo" para otimizar cálculos de semanas no mês com a função "getWeekInMonth", esse mesmo componente renderiza os dias da semana e pra cada semana do mês utiliza o componente "WeekRow" que ajusta a quantidade de dias para sempre ter sete dias por semana. Cada dia é representando pelo componente "CalendarDay".
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Pasta DatePicker
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+No arquivo index.jsx, está sendo exibido um campo de entrada de data, utilizei o "useRef" para criar uma referência ao elemento de entrada e ao ganhar foco, ele exibe o seletor de data nativo do navegador.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pasta TimePicker
 
-### `npm run build`
+Nesse, a ideia é a mesma do DatePicker, porém para o campo de entrada de horário.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Arquivo Header.jsx
+Nesse arquivo, foi feita a criação do Header que representa o cabeçalho, ele está importando os componentes "DatePicker" e "TimePicker" para a selação de data e horário. Há também a criação da função "handleSubmit" que é invocada ao enviar os dados, capturando os mesmos e consequentemente inseridos e os processa para definir o contrato de datas. Além disso há a opção para selecionar a inclusão de feriados nacionais e domingos no contato.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Pasta Helpers
+Nessa pasta eu criei o arquivo "dateHandlers" que contém uma série de funções relacionadas ao manuseios de datas e períodos de tempo. Acredito que o uso dessas funções são valiosas para diversas aplicações, desde a gereção de calendários até mesmo para cálculos de períodos.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Pasta Providers:
+Já no arquivo "CalendarProvider", está sendo feito o gerenciamento do contrato de datas, e inicializando com uma nova lista vazia de dias de folga.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Pasta Services
+Por fim, no "CalendarProvides.jsx" estou importando a API fornecida.

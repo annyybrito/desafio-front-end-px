@@ -1,3 +1,4 @@
+OBS: Eu não possui conhecimento em Tailwind, sendo assim, utilizei Bootstrap que é um pouco similar. Mas de qualquer forma, estou super disposta à aprender para apoiar o time. 
 
 Pasta Calendar
 
